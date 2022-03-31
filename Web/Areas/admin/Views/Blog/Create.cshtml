@@ -1,0 +1,62 @@
+﻿@model Blog
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Blog</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input name="Image" type="file" class="form-control" />
+                <span  class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+
+                <label asp-for="CategoryID" class="control-label"></label>
+               
+                <select class="form-control" name="CategoryID">
+                    @foreach (var cat in ViewBag.Categories as List<Category>)
+                    {
+                        <option value="@cat.ID">@cat.Name</option>
+                    }
+                    
+                    
+                </select>
+
+                
+                <span asp-validation-for="CategoryID" class="text-danger"></span>
+            </div>
+            
+             @*<div class="form-group"> 
+                 <span>UserID: @ViewBag.User</span>
+             </div>*@
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
